@@ -1,14 +1,10 @@
-import Pages.MainPage;
-import Pages.OrderPage;
+import pages.MainPage;
+import pages.OrderPage;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -49,9 +45,8 @@ public class SeleniumTests extends MainPageBase {
     @DataProvider
     public static Object[][] data2() {
         return new Object[][]{
-                {"Ян", "Иванов", "Ул. Тверская 16", "+79998887766", "01.01.2000", oneDayRent,isScouterColourBlack, "ну-ка, давай-ка"},
-                {"ЕвпатийЕвтьюшка", "Какаятооченьдлиннаяфамилия", "аа45б", "+01112223344", "11.08.2022", twoDayRent,isScouterColourGray,"Awesome comment for my reviewer :)"}
-
+                {"Ян", "Иванов", "Ул. Тверская 16", "+79998887766", "01.01.2000", oneDayRent, isScouterColourBlack, "ну-ка, давай-ка"},
+                {"ЕвпатийЕвтьюшка", "Какаятооченьдлиннаяфамилия", "аа45б", "+01112223344", "11.08.2022", twoDayRent, isScouterColourGray, "Awesome comment for my reviewer :)"}
         };
     }
 
@@ -66,10 +61,7 @@ public class SeleniumTests extends MainPageBase {
         orderPage.toWriteFormAboutRent(date, countRentDays, scouterColor, comment);
         orderPage.isDisplayedOrderNumber();
         assertTrue("Тест свалился, т.к. не отобразилась страница с успешным заказом", false);
-
-
     }
-
 }
 
 

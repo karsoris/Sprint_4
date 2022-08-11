@@ -1,11 +1,9 @@
-package Pages;
+package pages;
 
-import com.sun.tools.javac.Main;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.*;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 public class OrderPage {
     WebDriver driver;
@@ -13,11 +11,11 @@ public class OrderPage {
     public OrderPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-
-
     }
+
     @FindBy(className = "Order_Header__BZXOb")
     private WebElement isDisplayedSecondFormOrder;
+
     public boolean isDisplayedNextForm() {
         return isDisplayedSecondFormOrder.isDisplayed();
     }
@@ -28,6 +26,7 @@ public class OrderPage {
     public boolean toSuccesOrder() {
         return succesOrder.isDisplayed();
     }
+
     @FindBy(xpath = ".//input[@placeholder='* Имя']")
     private WebElement isName; //Путь к полю Имя
     @FindBy(xpath = ".//input[@placeholder='* Фамилия']")
@@ -55,50 +54,46 @@ public class OrderPage {
 
     public void setValidName(String name) {
         isName.sendKeys(name);
-
     }
 
     public void setValidFamily(String family) {
         isFamily.sendKeys(family);
-
     }
 
     public void setValidAdress(String adress) {
         isAdress.sendKeys(adress);
-
     }
 
     public void setMetroStation() {
         isMetroStation.click();
         isMetroStation.sendKeys(Keys.DOWN);
         isMetroStation.sendKeys(Keys.ENTER);
-
     }
 
     public void setValidPhone(String phone) {
         isPhone.sendKeys(phone);
-
     }
 
     public OrderPage clickNextButtonToForm2() {
         isButtonNext.click();
         return new OrderPage(driver);
     }
+
     @FindBy(xpath = ".//input[@placeholder='* Когда привезти самокат']")
     private WebElement isCalendar;
     @FindBy(xpath = ".//div[@class='Dropdown-placeholder']")
     private WebElement isRentTime;
     @FindBy(xpath = ".//input[@placeholder='Комментарий для курьера']")
     private WebElement isComment;
-@FindBy(xpath = ".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']")
-private WebElement finalOrderButton;
+    @FindBy(xpath = ".//button[@class='Button_Button__ra12g Button_Middle__1CSJM']")
+    private WebElement finalOrderButton;
     @FindBy(xpath = ".//button[text()='Да']")
     private WebElement confirmOrderButton;
     @FindBy(xpath = ".//div[@class='Order_ModalHeader__3FDaJ']")
     private WebElement orderNumber;
 
 
-    public OrderPage toWriteFormAboutRent(String date, String countRentDays,String scouterColor,String comment) {
+    public OrderPage toWriteFormAboutRent(String date, String countRentDays, String scouterColor, String comment) {
         setDateCalendar(date);
         setRentTime(countRentDays);
         setScooterColor(scouterColor);
@@ -107,31 +102,35 @@ private WebElement finalOrderButton;
         toConfirmOrder();
         return new OrderPage(driver);
     }
-    public void setDateCalendar (String date) {
+
+    public void setDateCalendar(String date) {
         isCalendar.click();
         isCalendar.sendKeys(date);
         isCalendar.sendKeys(Keys.ENTER);
-
     }
+
     public void setRentTime(String countRentDays) {
         isRentTime.click();
         driver.findElement(By.xpath(countRentDays)).click();
-        }
-public void setScooterColor(String scooterColor) {
-        driver.findElement(By.xpath(scooterColor));
-}
-public void setIsComment(String comment) {
-        isComment.sendKeys(comment);
-}
-public void toFinishOrder(){
-    finalOrderButton.click();
-}
-public void toConfirmOrder(){
-    confirmOrderButton.click();
     }
-public boolean isDisplayedOrderNumber(){
-    return orderNumber.isDisplayed();
 
-}
+    public void setScooterColor(String scooterColor) {
+        driver.findElement(By.xpath(scooterColor));
+    }
 
+    public void setIsComment(String comment) {
+        isComment.sendKeys(comment);
+    }
+
+    public void toFinishOrder() {
+        finalOrderButton.click();
+    }
+
+    public void toConfirmOrder() {
+        confirmOrderButton.click();
+    }
+
+    public boolean isDisplayedOrderNumber() {
+        return orderNumber.isDisplayed();
+    }
 }
